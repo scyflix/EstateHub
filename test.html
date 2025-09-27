@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EstateHub | Dashboard</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+   <!-- Navbar -->
+   <nav style="display: inline-flex;">
+        <div class="menu-icon" onclick="toggleSidebar()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h1>EstateHub</h1>
+   </nav>
+
+   <!-- Sidebar -->
+   <aside id="sidebar">
+        <div id="nav-bar">
+            <p style="text-align: center; color: white;">Navigate</p>
+            <a class="anchor-nav-bar" href="home.html">Dashboard</a>
+            <select onchange="goToLink(this)">
+                <option value="" disabled selected>--Clients--</option>
+                <option value="clients.html">Clients</option>
+                <option value="addclients.html">Add Client</option>
+            </select>
+            <select onchange="goToLink(this)">
+                <option value="" disabled selected>--Properties--</option>
+                <option value="test.html">Properties List</option>
+                <option id="add-propertyBtn" >Add Property</option>
+            </select>
+        <a class="anchor-nav-bar" href="test.html">Property List</a> 
+            <a class="anchor-nav-bar" href="clients.html">Clients</a>
+            <a class="anchor-nav-bar" href="Login.html">Login/Signup</a>
+        </div>
+   </aside>
+
+   <!-- Main Content -->
+   <main> 
+        <div id="dashboard-content">
+            <h2>Dashboard</h2>
+
+            <!-- Add Property Form -->
+            <section id="add-property">
+                <h3>Add Property</h3>
+                <form id="propertyForm">
+                    <input type="text" id="type" placeholder="Property Type (e.g., Apartment)" required>
+                    <input type="text" id="owner" placeholder="Owner Name" required>
+                    <input type="text" id="tenants" placeholder="Tenants (comma separated)">
+                    <input type="text" id="status" placeholder="Status (Rented/Vacant)" required>
+                    <input type="text" id="rent" placeholder="Rent/Value (e.g., €1200/mo)">
+                    <input type="date" id="expiry" placeholder="Lease Expiry">
+                    <button type="submit">Add Property</button>
+                </form>
+            </section>
+
+            <!-- Properties Table -->
+            <section id="property-table-section">
+                <h3>Property List</h3>
+                <table id="propertyTable">
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Owner</th>
+                            <th>Tenants</th>
+                            <th>Status</th>
+                            <th>Rent/Value</th>
+                            <th>Lease Expiry</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablebody">
+                        <!-- Rows will be injected by JS -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+   </main>
+
+   <!-- Footer -->
+   <footer>
+        EstateHub &copy; 2025
+   </footer>
+
+   <!-- Scripts -->
+   <script>
+        // Sidebar toggle
+        const sidebar = document.getElementById("sidebar");
+        function toggleSidebar() {
+            sidebar.classList.toggle("show");
+        }
+        function goToLink(selectElement) {
+            const selectedValue = selectElement.value;
+            if (selectedValue) window.location.href = selectedValue;
+        }
+        const addPropertyBtn = document.getElementById("add-propertyBtn");
+        const addProperty = document.getElementById("add-property");
+        const propertyTableSection = document.getElementById("property-table-section");
+        const propertyForm = document.getElementById("propertyForm");
+        /*
+        if(addPropertyBtn) {
+            addProperty.style.display = "block";
+            propertyTableSection.style.display = "none";
+            propertyForm.style.display = "flex";
+            propertyForm.style.flexDirection = "column";
+        } else {
+            addProperty.style.display = "none";
+            propertyTableSection.style.display = "block"; 
+        }
+            */
+        // Properties data from localStorage
+        let properties = JSON.parse(localStorage.getItem("properties")) || [];
+
+        function saveProperties() {
+            localStorage.setItem("properties", JSON.stringify(properties));
+        }
+        function renderTable() {
+            const tbody = document.querySelector("#propertyTable tbody");
+            tbody.innerHTML = "";
+            properties.forEach((p, index) => {
+                let tenants = p.tenants.length > 0 ? p.tenants.join(", ") : "[Vacant]";
+                let row = `
+                    <tr>
+                        <td>${p.type}</td>
+                        <td>${p.owner}</td>
+                        <td>${tenants}</td>
+                        <td>${p.status}</td>
+                        <td>${p.rent}</td>
+                        <td>${p.expiry || "-"}</td>
+                        <td>
+                            <button onclick="viewProperty(${index})">🔍 View</button>
+                            <button onclick="editProperty(${index})">✏️ Edit</button>
+                            <button onclick="deleteProperty(${index})">🗑 Remove</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+      
+        // Add property form
+        document.getElementById("propertyForm").addEventListener("submit", function(e){
+            e.preventDefault();
+            const newProperty = {
+                type: document.getElementById("type").value,
+                owner: document.getElementById("owner").value,
+                tenants: document.getElementById("tenants").value ? document.getElementById("tenants").value.split(",").map(t => t.trim()) : [],
+                status: document.getElementById("status").value,
+                rent: document.getElementById("rent").value,
+                expiry: document.getElementById("expiry").value,
+            };
+            properties.push(newProperty);
+            saveProperties();
+            renderTable();
+            this.reset();
+        });
+
+        // Actions
+        function viewProperty(index) {
+            localStorage.setItem("viewProperty", JSON.stringify(properties[index]));
+            window.location.href = "view-property.html";
+        }
+
+        function editProperty(index) {
+            alert("Editing: " + properties[index].type);
+        }
+
+        function deleteProperty(index) {
+            if(confirm("Are you sure?")) {
+                properties.splice(index,1);
+                saveProperties();
+                renderTable();
+            }
+        }
+
+        // Initial render
+        renderTable();
+   </script>
+</body>
+</html>
