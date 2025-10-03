@@ -1,87 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EstateHub | Dashboard</title>
-    <meta name="description" content="EstateHub helps you manage, discover, buy, and sell properties with ease. Explore listings, manage properties, and find your perfect home today.">
-    <meta name="keywords" content="real estate,manage, property, buy, sell, rent, home, agent, EstateHub">
-    <meta name="author" content="EstateHub Team">
-    <link rel="canonical" href="https://www.estatehub.com/home.html">
-    <meta property="og:title" content="EstateHub">
-    <meta property="og:description" content="Discover, buy, manage and sell properties with EstateHub. Your trusted real estate platform.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.estatehub.com/home.html">
-    <meta property="og:image" content="https://www.estatehub.com/assets/estatehub-og-image.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="EstateHub - Find Your Dream Property">
-    <meta name="twitter:description" content="Explore listings and connect with agents on EstateHub.">
-    <link rel="stylesheet" href="home.css">
-</head>
-<body>
-   <nav style="display: inline-flex;">
-    <div class="menu-icon" onclick="toggleSidebar()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <h1>EstateHub</h1>
+    <meta
+      name="description"
+      content="EstateHub helps you manage, discover, buy, and sell properties with ease. Explore listings, manage properties, and find your perfect home today."
+    />
+    <meta
+      name="keywords"
+      content="real estate,manage, property, buy, sell, rent, home, agent, EstateHub"
+    />
+    <meta name="author" content="EstateHub Team" />
+    <link rel="canonical" href="https://www.estatehub.com/home.html" />
+    <meta property="og:title" content="EstateHub" />
+    <meta
+      property="og:description"
+      content="Discover, buy, manage and sell properties with EstateHub. Your trusted real estate platform."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.estatehub.com/home.html" />
+    <meta
+      property="og:image"
+      content="https://www.estatehub.com/assets/estatehub-og-image.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EstateHub - Find Your Dream Property" />
+    <meta
+      name="twitter:description"
+      content="Explore listings and connect with agents on EstateHub."
+    />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <nav style="display: inline-flex">
+      <div class="menu-icon" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h1>EstateHub</h1>
     </nav>
     <aside id="sidebar">
-        <div id="nav-bar">
-            <p style="text-align: center; color: white;">Navigate</p>
-            <a class="anchor-nav-bar" href="home.html">Dashboard</a>
-            <a href="property.html" class="anchor-nav-bar">Add Property</a>
-                <a class="anchor-nav-bar" href="Login.html">Login/Signup</a>
-        </div>
-</aside>
+      <div id="nav-bar">
+        <p style="text-align: center; color: white">Navigate</p>
+        <a class="anchor-nav-bar" href="home.html">Dashboard</a>
+        <a href="property.html" class="anchor-nav-bar">Add Property</a>
+        <a class="anchor-nav-bar" href="Login.html">Login/Signup</a>
+      </div>
+    </aside>
 
     <div id="dashboard-content">
-        <section id="property-table-section">
-            <h2>Property Overview</h2>
-            <table id="propertyTable" border="1">
-                <thead>
-                    <tr>
-                        <th>Property</th>
-                    <th>Owner</th>
-                    <th>Status</th>
-                    <th>Rent</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="property-table-body"></tbody>
+      <section id="property-table-section">
+        <h2>Property Overview</h2>
+        <table id="propertyTable" border="1">
+          <thead>
+            <tr>
+              <th>Property</th>
+              <th>Owner</th>
+              <th>Status</th>
+              <th>Rent</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="property-table-body"></tbody>
         </table>
-        <a href="property.html" class="anchor-nav-bar" style="margin-top: 20px; width: 80px; height: 0px;">Add</a>
-    </section>
-</div>
-    
-    <footer>
-        Details 
-    </footer>
-   <script>
-    //For side bar display
-    const sidebar = document.getElementById("sidebar");
-    function toggleSidebar() {
+        <a
+          href="property.html"
+          class="anchor-nav-bar"
+          style="margin-top: 20px; width: 80px; height: 0px"
+          >Add</a
+        >
+      </section>
+    </div>
+
+    <footer>Details</footer>
+    <script>
+      //For side bar display
+      const sidebar = document.getElementById("sidebar");
+      function toggleSidebar() {
         sidebar.classList.toggle("show");
-    }
-    //to move between pages if using select element
-    function goToLink(selectElement) {
+      }
+      //to move between pages if using select element
+      function goToLink(selectElement) {
         const selectedValue = selectElement.value;
         if (selectedValue) {
-            window.location.href = selectedValue;
+          window.location.href = selectedValue;
         }
-    }
-//store property details in local storage
-    let getproperty = JSON.parse(localStorage.getItem("properties")) || [];
+      }
+      //Get property details from local storage
+      let getproperty = JSON.parse(localStorage.getItem("properties")) || [];
 
-function renderTable() {
-    const tbody = document.getElementById("property-table-body");
-    if (!tbody) return; // exit if table not on this page
+      function renderTable() {
+        const tbody = document.getElementById("property-table-body");
+        if (!tbody) return; // exit if table not on this page
 
-    tbody.innerHTML = "";
-    getproperty.forEach((property, index) => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
+        tbody.innerHTML = "";
+        getproperty.forEach((property, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
             <td>${property.type}</td>
             <td>${property.owner}</td>
             <td>${property.status}</td>
@@ -90,25 +108,24 @@ function renderTable() {
                 <button onclick="deleteProperty(${index})">🗑 Remove</button>
                 </td>
         `;
-        tbody.appendChild(row);
-    });
-}
+          tbody.appendChild(row);
+        });
+      }
 
-function viewProperty(index) {
-    const selectedProperty = getproperty[index];
-    localStorage.setItem("viewProperty", JSON.stringify(selectedProperty));
-    window.location.href = "view-property.html";
-}
+      function viewProperty(index) {
+        const selectedProperty = getproperty[index];
+        localStorage.setItem("viewProperty", JSON.stringify(selectedProperty));
+        window.location.href = "view-property.html";
+      }
 
- function deleteProperty(index) {
-            if(confirm("Are you sure?")) {
-                getproperty.splice(index,1);
-                 localStorage.setItem("properties", JSON.stringify(getproperty));
-                renderTable();
-            }
+      function deleteProperty(index) {
+        if (confirm("Are you sure?")) {
+          getproperty.splice(index, 1);
+          localStorage.setItem("properties", JSON.stringify(getproperty));
+          renderTable();
         }
-document.addEventListener("DOMContentLoaded", renderTable);
-
-   </script>
-</body>
+      }
+      document.addEventListener("DOMContentLoaded", renderTable);
+    </script>
+  </body>
 </html>
