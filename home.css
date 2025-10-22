@@ -206,7 +206,7 @@ select:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(255, 168, 7, 0.6);
 }
-.statsCard h2 {
+.statsCard h3 {
   color: #171717;
 }
 .statsCard p {
