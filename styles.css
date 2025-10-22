@@ -1,110 +1,99 @@
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(80deg, orangered, skyblue,  orange);
-    font-size: larger;
-    background-size: 200% 200%;
-    animation: gradientMove 6s ease-in-out infinite;
-    margin: 5px;
-    transition: margin 1s ease;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(80deg, orangered, skyblue, orange);
+  font-size: larger;
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease-in-out infinite;
+  margin: 5px;
+  transition: margin 1s ease;
 }
 
 @keyframes gradientMove {
-    0% {
-        background-position: 0% 50%;
-    }
-    25% {
-        background-position: 25% 50%;
-    }
-    50% {
-        background-position: 50% 50%;
-    }
-     75% {
-        background-position: 100% 50%;
-    }
-     100% {
-        background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 25% 50%;
+  }
+  50% {
+    background-position: 50% 50%;
+  }
+  75% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 .welcome-text {
-        color: black;
-    text-align: center;
-    padding: 20px;
-    margin: 200px 5px;
+  color: black;
+  text-align: center;
+  padding: 20px;
+  margin: 200px 5px;
 }
 img {
-    width: 100px;
-    height: 100px;
-    display: block;
-    margin: 20px auto;
-    align-items: center;
-    justify-content: center;
-    border-radius: 30px;
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 20px auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
 }
 @keyframes pulse {
-    0% {
-        transform: scale(1.05);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    100% {
-        transform: scale(1.05);
-    }
+  0% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+@media (max-width: 800px) {
+  #getstartedBtn {
+    width: 70vw;
+  }
 }
 #getstartedBtn {
-    background: radial-gradient(circle at center, yellow, orange);
-    color: black;
-    width: 300px;
-    font-size: 20px;
-    height: 60px;
-    padding: 10px;
-    border: 2px solid #ff5c00;
-    border-radius: 5px;
-    margin: 10px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: pulse 3s ease-in-out infinite;
+  background: radial-gradient(circle at center, yellow, orange);
+  color: black;
+  width: 300px;
+  font-size: 20px;
+  height: 60px;
+  padding: 10px;
+  border: 2px solid #ff5c00;
+  border-radius: 5px;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pulse 3s ease-in-out infinite;
 }
 #getstartedBtn:hover {
-    background-color: #ff5c00;
-    width: 310px;
-    height: 65px;
-    font-size: larger;
-    color: rgb(54, 54, 54);
-    transform: scale(1.20);
-    transition: all 0.3s ease-in-out;
-    animation: none;
+  background-color: #ff5c00;
+  width: 310px;
+  height: 65px;
+  font-size: larger;
+  color: rgb(54, 54, 54);
+  transform: scale(1.2);
+  transition: all 0.3s ease-in-out;
+  animation: none;
 }
-h1{
-    display: flex;
-    margin: 0 30px;
+h1 {
+  display: flex;
+  margin: 0 30px;
 }
 p {
-    margin: 0 0 40px 0;
+  margin: 0 0 40px 0;
 }
 header {
-     display: flex;
-    gap: 2rem;
-     background: linear-gradient(90deg, orange, yellow, orangered);
-    padding: 1rem 0;
-    border-radius: 30px;
-    margin: 3px;
-    height: 25px;
-}
-#login-button {
-    text-decoration: none;
-    margin: 0 30px 30px auto;
-      background-color: black;
-    color: white;
-    width: auto;
-    height: 30px;
-    border: 2px solid #ff5c00;
-    border-radius: 5px;
-    justify-content: center;
-    align-items: center;
-}
-#login-button:hover {
-    background-color: white;
-    color: black;
+  display: flex;
+  gap: 2rem;
+  background: linear-gradient(90deg, orange, yellow, orangered);
+  padding: 1rem 0;
+  border-radius: 30px;
+  margin: 3px;
+  height: 25px;
 }

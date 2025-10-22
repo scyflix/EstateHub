@@ -133,7 +133,7 @@
           <button onclick="viewProperty(${index})">👀 View</button>
           <button onclick="deleteProperty(${index})">🗑 Remove</button>
           `;
-          detailsCard.appendChild(cardDiv);
+          detailsCard.prepend(cardDiv);
         });
         allPropertiesCount.innerText = allCount;
         rentedPropertyCount.innerText = rentedCount;
