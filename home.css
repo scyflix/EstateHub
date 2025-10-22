@@ -7,7 +7,7 @@ body {
   min-height: 100vh;
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: rgb(49, 48, 48);
+  background: linear-gradient(135deg, #000000, #303030);
   color: #222;
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -80,13 +80,33 @@ main {
     border-radius: 2px;
     transition: 0.6s;
   }
-  table {
-    width: 90vw;
-    border-collapse: collapse;
-    margin: 1rem 200px 0 2px;
-    background: #2e2e2e;
-    border-radius: 12px;
-    overflow: hidden;
+  #detailsCard div {
+    width: 90%;
+  }
+  .statsCard {
+    background-color: orange;
+    width: 90%;
+    height: 100px;
+    border-radius: 20px;
+    padding: 10px;
+    transition: transform 0.5s ease-out, box-shadow 0.6s ease-in;
+  }
+  #statsCards {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .statsCard {
+    background-color: orange;
+    width: 200px;
+    height: 100px;
+    border-radius: 20px;
+    padding: 10px;
+    transition: transform 0.5s ease-out, box-shadow 0.6s ease-in;
   }
 }
 footer {
@@ -127,6 +147,11 @@ select:hover {
 .anchor-nav-bar:hover {
   background-color: rgb(86, 86, 86);
 }
+.anchor-nav-bar.active {
+  background-color: #00bcd4;
+  color: #000;
+  font-weight: 600;
+}
 
 #view-property-page {
   background-color: #444;
@@ -149,107 +174,69 @@ select:hover {
   background: #9e9e9e;
   color: white;
 }
-/*
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-
-body {
-    min-height: 100vh;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: rgb(49,48,48);
-    color: #fff;
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    grid-template-rows: auto 1fr auto;
-  grid-template-areas: 
-    "navbar navbar"
-    "sidebar main"
-    "sidebar footer";
-}
-
-nav {
-    grid-area: navbar;
-    background: linear-gradient(90deg, orange, skyblue, yellow);
-  color: black;
-  margin: 5px 20px;
-  padding: 10px 20px;
-  border-radius: 30px;
+#statsCards {
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  margin: 0 auto;
 }
-
-aside {
-    grid-area: sidebar;
-}
-
-main {
-  grid-area: main;
-  color: white;
-  padding: 20px;
-  }
-  
-footer {
-  grid-area: footer;
-  text-align: center;
-  padding: 1.5rem 0;
-  background: #2d6a4f;
-  color: #fff;
-  font-size: 1rem;
-  border-radius: 0 0 12px 12px;
-}
-
-
-#nav-bar {
-  background-color: rgb(26,26,26);
-  width: 290px;
-  height: 90vh;
+.statsCard {
+  background-color: orange;
+  width: 200px;
+  height: 100px;
   border-radius: 20px;
   padding: 10px;
+  transition: transform 0.5s ease-out, box-shadow 0.6s ease-in;
 }
-
-
-select, .anchor-nav-bar, button {
-  text-decoration: none;
-  margin: 5px 0;
-  width: 90%;
-  height: 40px;
-  border-radius: 8px;
-  background-color: rgb(45,45,45);
+.statsCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 168, 7, 0.6);
+}
+.statsCard h2 {
+  color: #171717;
+}
+.statsCard p {
+  font-size: 30px;
+  font-weight: 600;
   color: white;
-  font-size: 16px;
-  border: none;
-  padding: 0 10px;
-  cursor: pointer;
 }
-select:hover, .anchor-nav-bar:hover, button:hover {
-  background-color: rgb(86,86,86);
-  }
-/*
-/* Table */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 200px 0 2px;
-  background: #2e2e2e;
+
+/*Details container */
+#detailsCard {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin: 10px;
+  border-radius: 15px;
+  flex-wrap: wrap;
+}
+#detailsCard div {
+  background-color: #2d2d2d;
+  padding: 10px;
+  width: 300px;
   border-radius: 12px;
-  overflow: hidden;
+  transition: all 0.5s ease-in;
 }
-th,
-td {
+#detailsCard div:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(255, 168, 7, 0.9);
+}
+#detailsCard div h3 {
+  color: orange;
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #444;
-}
-th {
   background: #1f1f1f;
-  color: orange;
+  border-radius: 20px;
 }
-td {
-  color: #fff;
+#detailsCard div p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
 }
 button {
   background: #444;

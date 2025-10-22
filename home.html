@@ -52,30 +52,27 @@
     </aside>
 
     <div id="dashboard-content">
+      <section id="statsCards">
+        <div id="allProperties" class="statsCard">
+          <h2>Property Count</h2>
+          <p id="allPropertiesCount">0</p>
+        </div>
+        <div id="rentedProperty" class="statsCard">
+          <h2>Rented</h2>
+          <p id="rentedPropertyCount">0</p>
+        </div>
+        <div id="availableProperty" class="statsCard">
+          <h2>Available</h2>
+          <p id="availablePropertyCount">0</p>
+        </div>
+      </section>
       <section id="property-table-section">
-        <h2>Property Overview</h2>
-        <table id="propertyTable" border="1">
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Owner</th>
-              <th>Status</th>
-              <th>Rent</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="property-table-body"></tbody>
-        </table>
-        <a
-          href="property.html"
-          class="anchor-nav-bar"
-          style="margin-top: 20px; width: 80px; height: 0px"
-          >Add</a
-        >
+        <h3 style="color: white">Property Overview</h3>
+        <div id="detailsCard"></div>
       </section>
     </div>
 
-    <footer>Details</footer>
+    <footer><p>&copy; EstateHub | All rights reserved</p></footer>
     <script>
       //For side bar display
       const sidebar = document.getElementById("sidebar");
@@ -89,27 +86,58 @@
           window.location.href = selectedValue;
         }
       }
+      // Link glows slightly when active
+      const links = document.querySelectorAll(".anchor-nav-bar");
+      links.forEach((link) => {
+        if (link.href === window.location.href) {
+          link.classList.add("active");
+        }
+      });
+
       //Get property details from local storage
       let getproperty = JSON.parse(localStorage.getItem("properties")) || [];
 
-      function renderTable() {
-        const tbody = document.getElementById("property-table-body");
-        if (!tbody) return; // exit if table not on this page
+      function renderCards() {
+        const detailsCard = document.getElementById("detailsCard");
+        let allPropertiesCount = document.getElementById("allPropertiesCount");
+        let rentedPropertyCount = document.getElementById(
+          "rentedPropertyCount"
+        );
+        let availablePropertyCount = document.getElementById(
+          "availablePropertyCount"
+        );
+        let allCount = 0;
+        let rentedCount = 0;
+        let availableCount = 0;
+        if (!detailsCard) return; // exit if table not on this page
 
-        tbody.innerHTML = "";
+        if (getproperty.length === 0) {
+          detailsCard.innerHTML = `<p>Nothing to show</p>`;
+          return;
+        }
+
+        detailsCard.innerHTML = "";
         getproperty.forEach((property, index) => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${property.type}</td>
-            <td>${property.owner}</td>
-            <td>${property.status}</td>
-            <td>${property.rent}</td>
-            <td><button onclick="viewProperty(${index})">View</button>
-                <button onclick="deleteProperty(${index})">🗑 Remove</button>
-                </td>
-        `;
-          tbody.appendChild(row);
+          allCount++;
+          if (property.status.toLowerCase() === "rented") {
+            rentedCount++;
+          } else {
+            availableCount++;
+          }
+          const cardDiv = document.createElement("div");
+          cardDiv.innerHTML = `
+          <h3>${property.owner}</h3>
+          <p><b>Property Type:</b> ${property.type}</p>
+          <p><b>Property Status:</b> ${property.status}</p>
+          <p><b>Rent Price:</b> ${property.rent}</p>
+          <button onclick="viewProperty(${index})">👀 View</button>
+          <button onclick="deleteProperty(${index})">🗑 Remove</button>
+          `;
+          detailsCard.appendChild(cardDiv);
         });
+        allPropertiesCount.innerText = allCount;
+        rentedPropertyCount.innerText = rentedCount;
+        availablePropertyCount.innerText = availableCount;
       }
 
       function viewProperty(index) {
@@ -117,15 +145,16 @@
         localStorage.setItem("viewProperty", JSON.stringify(selectedProperty));
         window.location.href = "view-property.html";
       }
-
+      //delet property card
       function deleteProperty(index) {
         if (confirm("Are you sure?")) {
           getproperty.splice(index, 1);
           localStorage.setItem("properties", JSON.stringify(getproperty));
-          renderTable();
+          renderCards();
         }
       }
-      document.addEventListener("DOMContentLoaded", renderTable);
+
+      document.addEventListener("DOMContentLoaded", renderCards);
     </script>
   </body>
 </html>

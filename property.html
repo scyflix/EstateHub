@@ -1,122 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EstateHub - Statisfy Your clients</title>
-    <meta name="description" content="EstateHub helps you manage, discover, buy, and sell properties with ease. Explore listings, manage properties, and find your perfect home today.">
-    <meta name="keywords" content="real estate,manage, property, buy, sell, rent, home, agent, EstateHub">
-    <meta name="author" content="EstateHub Team">
-    <link rel="canonical" href="https://www.estatehub.com/home.html">
-    <meta property="og:title" content="EstateHub">
-    <meta property="og:description" content="Discover, buy, manage and sell properties with EstateHub. Your trusted real estate platform.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.estatehub.com/home.html">
-    <meta property="og:image" content="https://www.estatehub.com/assets/estatehub-og-image.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="EstateHub - Find Your Dream Property">
-    <meta name="twitter:description" content="Explore listings and connect with agents on EstateHub.">
-    <link rel="stylesheet" href="home.css">
-</head>
-<body>
-   <nav style="display: inline-flex;">
-    <div class="menu-icon" onclick="togglrSidebar()">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <h1>EstateHub</h1>
+    <meta
+      name="description"
+      content="EstateHub helps you manage, discover, buy, and sell properties with ease. Explore listings, manage properties, and find your perfect home today."
+    />
+    <meta
+      name="keywords"
+      content="real estate,manage, property, buy, sell, rent, home, agent, EstateHub"
+    />
+    <meta name="author" content="EstateHub Team" />
+    <link rel="canonical" href="https://www.estatehub.com/home.html" />
+    <meta property="og:title" content="EstateHub" />
+    <meta
+      property="og:description"
+      content="Discover, buy, manage and sell properties with EstateHub. Your trusted real estate platform."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.estatehub.com/home.html" />
+    <meta
+      property="og:image"
+      content="https://www.estatehub.com/assets/estatehub-og-image.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="EstateHub - Find Your Dream Property" />
+    <meta
+      name="twitter:description"
+      content="Explore listings and connect with agents on EstateHub."
+    />
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+    <nav style="display: inline-flex">
+      <div class="menu-icon" onclick="toggleSidebar()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h1>EstateHub</h1>
     </nav>
     <aside id="sidebar">
-        <div id="nav-bar">
-            <p style="text-align: center; color: white;">Navigate</p>
-            <a class="anchor-nav-bar" href="home.html">Dashboard</a>
-            <select onchange="goToLink(this)">
-                <option value="" disabled selected>--Clients--</option>
-                <option value="clients.html">Clients</option>
-                <option value="addclients.html">Add Client</option>
-                <option>
-                    <a href="#">Contact Client</a>
-                </option>
-            </select>
-            <select onchange="goToLink(this)">
-                <option value="" disabled selected>--Properties--</option>
-                <option value="property.html">Properties List</option>
-                <option value="">Add Property</option>
-                </select>
-                <a class="anchor-nav-bar" href="Login.html">Login/Signup</a>
-            </section>
-        </div>
-    </div>
-</aside>
+      <div id="nav-bar">
+        <p style="text-align: center; color: white">Navigate</p>
+        <a class="anchor-nav-bar" href="home.html">Dashboard</a>
+        <a href="property.html" class="anchor-nav-bar">Add Property</a>
+        <a class="anchor-nav-bar" href="Login.html">Login/Signup</a>
+      </div>
+    </aside>
 
-       <div id="dashboard-content">
-           <h2 style="color: white; margin: 5px; text-align: center;">Add Property</h2>
-    <section id="add-property">
+    <div id="dashboard-content">
+      <h2 style="color: white; margin: 5px; text-align: center">
+        Add Property
+      </h2>
+      <section id="add-property">
         <form id="propertyForm">
-            <input type="text" id="type" placeholder="Property type (e.g. Apartment, estate)">
-            <input type="text" id="owner" placeholder="owner`s name">
-            <input type="text" id="status" placeholder="Rented, leased, for sale">
-            <input type="text" id="rent" placeholder="Amount for Rent(N100,000)">
-            <input type="date" id="expiry" placeholder="Lease expiry date">
-            <input type="text" id="tenants" placeholder="Name of tenants">
-            <textarea type="text" id="description" placeholder="Property description"></textarea>
-            <button type="submit">Add Property</button>
+          <input
+            type="text"
+            id="type"
+            placeholder="Property type (e.g. Apartment, estate)"
+          />
+          <input type="text" id="owner" placeholder="owner`s name" />
+          <input
+            type="text"
+            id="status"
+            placeholder="Rented, leased, for sale"
+          />
+          <input
+            type="text"
+            id="rent"
+            placeholder="Amount for Rent(N100,000)"
+          />
+          <input type="date" id="expiry" placeholder="Lease expiry date" />
+          <input type="text" id="tenants" placeholder="Name of tenants" />
+          <textarea
+            type="text"
+            id="description"
+            placeholder="Property description"
+          ></textarea>
+          <button type="submit">Add Property</button>
         </form>
-    </section>
-       </div>
+      </section>
+    </div>
 
-    <footer>
-        Details 
-    </footer>
-   <script>
-    const sidebar = document.getElementById("sidebar");
-    function togglrSidebar() {
+    <footer>Details</footer>
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      function toggleSidebar() {
         sidebar.classList.toggle("show");
-    }
-    function goToLink(selectElement) {
+      }
+      function goToLink(selectElement) {
         const selectedValue = selectElement.value;
         if (selectedValue) {
-            window.location.href = selectedValue;
+          window.location.href = selectedValue;
         }
-    }
+      }
+      // Link glows slightly when active
+      const links = document.querySelectorAll(".anchor-nav-bar");
+      links.forEach((link) => {
+        if (link.href === window.location.href) {
+          link.classList.add("active");
+        }
+      });
+      let getproperty = JSON.parse(localStorage.getItem("properties")) || [];
 
-    let getproperty = JSON.parse(localStorage.getItem("properties")) || [];
+      const propertyForm = document.getElementById("propertyForm");
+      propertyForm.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-const propertyForm = document.getElementById("propertyForm");
-propertyForm.addEventListener("submit", function(event) {
-    event.preventDefault();
+        const type = document.getElementById("type").value;
+        const owner = document.getElementById("owner").value;
+        const status = document.getElementById("status").value;
+        const rent = document.getElementById("rent").value;
+        const expiry = document.getElementById("expiry").value;
+        const tenants = document.getElementById("tenants").value;
+        const description = document.getElementById("description").value;
 
-    const type = document.getElementById("type").value;
-    const owner = document.getElementById("owner").value;
-    const status = document.getElementById("status").value;
-    const rent = document.getElementById("rent").value;
-    const expiry = document.getElementById("expiry").value;
-    const tenants = document.getElementById("tenants").value;
-    const description = document.getElementById("description").value;
-    
-    const newProperty = {
-        type,
-        owner,
-        status,
-        rent,
-        leaseExpiry: expiry,
-        tenants,
-        description
-    };
-    getproperty.push(newProperty);
-    localStorage.setItem("properties", JSON.stringify(getproperty));
-    window.location.href = "home.html"; // redirect to dashboard
-});
-function deleteProperty(index) {
-    if (confirm("Are you sure?")) {
-        getproperty.splice(index, 1); // remove the property from the array
-        localStorage.setItem("properties", JSON.stringify(getproperty)); // save updated array
-        renderTable(); // refresh the table
-    }
-}
-
-
-   </script>
-</body>
+        const newProperty = {
+          type,
+          owner,
+          status,
+          rent,
+          leaseExpiry: expiry,
+          tenants,
+          description,
+        };
+        getproperty.push(newProperty);
+        localStorage.setItem("properties", JSON.stringify(getproperty));
+        window.location.href = "home.html"; // redirect to dashboard
+      });
+      function deleteProperty(index) {
+        if (confirm("Are you sure?")) {
+          getproperty.splice(index, 1); // remove the property from the array
+          localStorage.setItem("properties", JSON.stringify(getproperty)); // save updated array
+          renderCards(); // refresh the table
+        }
+      }
+    </script>
+  </body>
 </html>
